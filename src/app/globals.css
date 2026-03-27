@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+:root {
+  --background: #eef2f7;
+  --foreground: #0f172a;
+
+  --brand: #123a63;
+
+  --construction: #f97316;
+  --spaces: #16a34a;
+  --manufacturing: #6b7280;
+  --branding: #d946ef;
+  --media: #7c3aed;
+
+  --border: rgba(15, 23, 42, 0.1);
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
