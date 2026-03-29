@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 
 type GalleryImage = {
     id: string;
@@ -14,27 +14,12 @@ type ProjectsGalleryProps = {
     images: GalleryImage[];
 };
 
-function shuffleArray<T>(array: T[]): T[] {
-    const result = [...array];
-
-    for (let i = result.length - 1; i > 0; i -= 1) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [result[i], result[j]] = [result[j], result[i]];
-    }
-
-    return result;
-}
-
 export default function ProjectsGallery({ images }: ProjectsGalleryProps) {
     const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
     const [showAll, setShowAll] = useState(false);
 
-    const shuffledImages = useMemo(() => {
-        return shuffleArray(images);
-    }, [images]);
-
-    const visibleImages = showAll ? shuffledImages : shuffledImages.slice(0, 6);
-    const hasMoreThanSix = shuffledImages.length > 6;
+    const visibleImages = showAll ? images : images.slice(0, 6);
+    const hasMoreThanSix = images.length > 6;
 
     return (
         <>
@@ -52,6 +37,7 @@ export default function ProjectsGallery({ images }: ProjectsGalleryProps) {
                                 alt={image.alt_text || image.area || "Proyecto Taller 85"}
                                 fill
                                 className="object-cover"
+                                sizes="(max-width: 768px) 100vw, 33vw"
                             />
                         </div>
 
@@ -93,6 +79,7 @@ export default function ProjectsGallery({ images }: ProjectsGalleryProps) {
                                 alt={selectedImage.alt_text || selectedImage.area || "Proyecto Taller 85"}
                                 fill
                                 className="object-contain"
+                                sizes="100vw"
                             />
                         </div>
 

@@ -27,6 +27,7 @@ export default function Header() {
               alt="Taller 85"
               width={60}
               height={60}
+              priority
             />
             <span className="text-xl font-semibold text-[color:var(--brand)]">
               Taller 85
