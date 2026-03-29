@@ -1,10 +1,27 @@
 import AreaPage from "@/components/sections/area-page";
 import type { Metadata } from "next";
 
+const title = "Branding";
+const description =
+  "Ropa corporativa, merchandising, EPP personalizados y desarrollo de productos de marca.";
+const url = "https://www.taller85.cl/branding";
+
 export const metadata: Metadata = {
-  title: "Branding | Taller 85",
-  description:
-    "Ropa corporativa, merchandising, EPP personalizados y desarrollo de productos de marca.",
+  title,
+  description,
+  alternates: {
+    canonical: "/branding",
+  },
+  openGraph: {
+    title: `${title} | Taller 85`,
+    description,
+    url,
+    type: "website",
+  },
+  twitter: {
+    title: `${title} | Taller 85`,
+    description,
+  },
 };
 
 export default function BrandingPage() {

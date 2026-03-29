@@ -1,10 +1,27 @@
 import AreaPage from "@/components/sections/area-page";
 import type { Metadata } from "next";
 
+const title = "Media";
+const description =
+  "Producción audiovisual, fotografía, contenido digital y desarrollo web para marcas y proyectos.";
+const url = "https://www.taller85.cl/media";
+
 export const metadata: Metadata = {
-  title: "Media | Taller 85",
-  description:
-    "Producción audiovisual, fotografía, contenido digital y desarrollo web para marcas y proyectos.",
+  title,
+  description,
+  alternates: {
+    canonical: "/media",
+  },
+  openGraph: {
+    title: `${title} | Taller 85`,
+    description,
+    url,
+    type: "website",
+  },
+  twitter: {
+    title: `${title} | Taller 85`,
+    description,
+  },
 };
 
 export default function MediaPage() {

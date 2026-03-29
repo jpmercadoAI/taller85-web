@@ -1,10 +1,27 @@
 import AreaPage from "@/components/sections/area-page";
 import type { Metadata } from "next";
 
+const title = "Espacios";
+const description =
+  "Implementación, mantención y equipamiento de espacios públicos, comunitarios y privados.";
+const url = "https://www.taller85.cl/espacios";
+
 export const metadata: Metadata = {
-  title: "Espacios | Taller 85",
-  description:
-    "Implementación, mantención y equipamiento de espacios públicos, comunitarios y privados.",
+  title,
+  description,
+  alternates: {
+    canonical: "/espacios",
+  },
+  openGraph: {
+    title: `${title} | Taller 85`,
+    description,
+    url,
+    type: "website",
+  },
+  twitter: {
+    title: `${title} | Taller 85`,
+    description,
+  },
 };
 
 export default function EspaciosPage() {

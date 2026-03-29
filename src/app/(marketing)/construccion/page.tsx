@@ -1,10 +1,27 @@
 import AreaPage from "@/components/sections/area-page";
 import type { Metadata } from "next";
 
+const title = "Construcción";
+const description =
+  "Obras menores, instalación de equipamiento, preparación de terrenos y soluciones en terreno.";
+const url = "https://www.taller85.cl/construccion";
+
 export const metadata: Metadata = {
-  title: "Construcción | Taller 85",
-  description:
-    "Obras menores, instalación de equipamiento, preparación de terrenos y soluciones en terreno.",
+  title,
+  description,
+  alternates: {
+    canonical: "/construccion",
+  },
+  openGraph: {
+    title: `${title} | Taller 85`,
+    description,
+    url,
+    type: "website",
+  },
+  twitter: {
+    title: `${title} | Taller 85`,
+    description,
+  },
 };
 
 export default function ConstruccionPage() {

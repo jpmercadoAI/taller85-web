@@ -1,10 +1,27 @@
 import AreaPage from "@/components/sections/area-page";
 import type { Metadata } from "next";
 
+const title = "Manufactura";
+const description =
+  "Desarrollo y fabricación de productos, piezas y soluciones técnicas según necesidad.";
+const url = "https://www.taller85.cl/manufactura";
+
 export const metadata: Metadata = {
-  title: "Manufactura | Taller 85",
-  description:
-    "Desarrollo y fabricación de productos, piezas y soluciones técnicas según necesidad.",
+  title,
+  description,
+  alternates: {
+    canonical: "/manufactura",
+  },
+  openGraph: {
+    title: `${title} | Taller 85`,
+    description,
+    url,
+    type: "website",
+  },
+  twitter: {
+    title: `${title} | Taller 85`,
+    description,
+  },
 };
 
 export default function ManufacturaPage() {

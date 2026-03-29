@@ -6,9 +6,27 @@ import { createClient } from "@/lib/supabase/server";
 import ProjectsGallery from "@/components/sections/projects-gallery";
 import { Boxes, Wrench, Shuffle } from "lucide-react";
 
+const title = "Taller 85";
+const description =
+  "Taller 85 integra construcción, espacios, manufactura, branding y media para desarrollar soluciones reales en proyectos, espacios y marcas.";
+const url = "https://www.taller85.cl";
+
 export const metadata: Metadata = {
-  title: "Taller 85",
-  description: "Soluciones para proyectos, espacios y marcas.",
+  title,
+  description,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Taller 85 | Soluciones para proyectos, espacios y marcas",
+    description,
+    url,
+    type: "website",
+  },
+  twitter: {
+    title: "Taller 85 | Soluciones para proyectos, espacios y marcas",
+    description,
+  },
 };
 
 const areas = [
@@ -90,7 +108,6 @@ export default async function Home() {
         ))}
       </div>
 
-
       <section className="mt-28">
         <div className="mx-auto max-w-6xl rounded-3xl border border-black/5 bg-white px-8 py-12 shadow-sm md:px-12 md:py-16">
           <div
@@ -160,8 +177,6 @@ export default async function Home() {
           </div>
         </div>
       </section>
-
-
 
       <section className="mt-28">
         <div className="mx-auto max-w-6xl">
