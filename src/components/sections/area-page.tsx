@@ -2,14 +2,14 @@ import ProjectsGallery from "@/components/sections/projects-gallery";
 import { createClient } from "@/lib/supabase/server";
 
 function shuffleArray<T>(array: T[]): T[] {
-  const result = [...array];
+    const result = [...array];
 
-  for (let i = result.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [result[i], result[j]] = [result[j], result[i]];
-  }
+    for (let i = result.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [result[i], result[j]] = [result[j], result[i]];
+    }
 
-  return result;
+    return result;
 }
 
 type ServiceItem = {
@@ -60,7 +60,7 @@ export default async function AreaPage({
     const images = shuffleArray(rawImages);
 
     return (
-        <main className="mx-auto max-w-7xl px-6 py-16 md:px-10">
+        <div className="mx-auto max-w-7xl px-6 py-16 md:px-10">
             <section className="mb-14">
                 <p
                     className="mb-3 text-sm font-medium uppercase tracking-[0.2em]"
@@ -78,7 +78,20 @@ export default async function AreaPage({
                 </p>
             </section>
 
-            <section className="mb-16">
+            <section className="mb-16" aria-labelledby="services-heading">
+                <div className="mb-6">
+                    <h2
+                        id="services-heading"
+                        className="text-2xl font-semibold tracking-tight text-neutral-950"
+                    >
+                        Servicios del área
+                    </h2>
+
+                    <p className="mt-3 max-w-3xl text-sm leading-6 text-neutral-600 md:text-base">
+                        Soluciones y capacidades vinculadas a esta línea de trabajo.
+                    </p>
+                </div>
+
                 <div className="-mx-6 overflow-x-auto px-6 pb-4 md:-mx-10 md:px-10">
                     <div className="flex snap-x snap-mandatory gap-5">
                         {services.map((service) => (
@@ -108,9 +121,12 @@ export default async function AreaPage({
                 </div>
             </section>
 
-            <section>
+            <section aria-labelledby="gallery-heading">
                 <div className="mb-6">
-                    <h2 className="text-2xl font-semibold tracking-tight text-neutral-950">
+                    <h2
+                        id="gallery-heading"
+                        className="text-2xl font-semibold tracking-tight text-neutral-950"
+                    >
                         Trabajos del área
                     </h2>
 
@@ -129,6 +145,6 @@ export default async function AreaPage({
                     </div>
                 )}
             </section>
-        </main>
+        </div>
     );
 }
