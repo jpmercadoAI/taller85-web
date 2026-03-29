@@ -145,6 +145,32 @@ export default async function AreaPage({
                     </div>
                 )}
             </section>
+            <section className="mt-20 rounded-3xl border border-black/10 bg-white px-8 py-10 text-center shadow-sm">
+                <h2 className="text-2xl font-semibold">
+                    ¿Tienes un proyecto en esta área?
+                </h2>
+
+                <p className="mt-3 text-neutral-600">
+                    Cuéntanos qué necesitas y evaluamos la mejor forma de desarrollarlo.
+                </p>
+
+                <div className="mt-6 flex justify-center gap-3">
+                    <a
+                        href="#contacto"
+                        className="rounded-xl bg-[color:var(--brand)] px-6 py-3 text-sm font-medium text-white transition hover:opacity-90"
+                    >
+                        Solicitar cotización
+                    </a>
+
+                    <a
+                        href="https://wa.me/56957269426"
+                        target="_blank"
+                        className="rounded-xl border border-black/10 bg-white px-6 py-3 text-sm font-medium text-neutral-900 transition hover:bg-neutral-50"
+                    >
+                        WhatsApp
+                    </a>
+                </div>
+            </section>
         </div>
     );
 }

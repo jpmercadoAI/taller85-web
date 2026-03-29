@@ -178,6 +178,23 @@ export default async function Home() {
         </div>
       </section>
 
+      <div className="mt-6 flex gap-3">
+        <a
+          href="#contacto"
+          className="rounded-xl bg-[color:var(--brand)] px-6 py-3 text-sm font-medium text-white transition hover:opacity-90"
+        >
+          Solicitar cotización
+        </a>
+
+        <a
+          href="https://wa.me/56957269426"
+          target="_blank"
+          className="rounded-xl border border-black/10 bg-white px-6 py-3 text-sm font-medium text-neutral-900 transition hover:bg-neutral-50"
+        >
+          WhatsApp
+        </a>
+      </div>
+
       <section className="mt-28">
         <div className="mx-auto max-w-6xl">
           <h2 className="mb-6 text-2xl font-semibold">Proyectos recientes</h2>
