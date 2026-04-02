@@ -1,9 +1,9 @@
 import AreaPage from "@/components/sections/area-page";
 import type { Metadata } from "next";
 
-const title = "Branding";
+const title = "Branding, merch y ropa corporativa personalizada | Taller 85";
 const description =
-  "Ropa corporativa, merchandising, EPP personalizados y desarrollo de productos de marca.";
+  "Diseño y producción de ropa corporativa, merchandising y elementos gráficos para marcas, empresas y proyectos con identidad propia.";
 const url = "https://www.taller85.cl/branding";
 
 export const metadata: Metadata = {

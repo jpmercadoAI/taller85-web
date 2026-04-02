@@ -1,9 +1,9 @@
 import AreaPage from "@/components/sections/area-page";
 import type { Metadata } from "next";
 
-const title = "Manufactura";
+const title = "Fabricación de estructuras y soluciones a medida | Taller 85";
 const description =
-  "Desarrollo y fabricación de productos, piezas y soluciones técnicas según necesidad.";
+  "Desarrollo y fabricación de piezas, estructuras metálicas y soluciones personalizadas para proyectos técnicos, urbanos e industriales.";
 const url = "https://www.taller85.cl/manufactura";
 
 export const metadata: Metadata = {

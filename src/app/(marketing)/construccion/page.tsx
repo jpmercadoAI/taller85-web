@@ -1,9 +1,9 @@
 import AreaPage from "@/components/sections/area-page";
 import type { Metadata } from "next";
 
-const title = "Construcción";
+const title = "Obras menores y ejecución en terreno | Taller 85";
 const description =
-  "Obras menores, instalación de equipamiento, preparación de terrenos y soluciones en terreno.";
+  "Ejecución de obras menores, preparación de terrenos, instalación de equipamiento y soluciones técnicas en terreno para espacios públicos y privados.";
 const url = "https://www.taller85.cl/construccion";
 
 export const metadata: Metadata = {

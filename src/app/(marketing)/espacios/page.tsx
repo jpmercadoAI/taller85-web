@@ -1,9 +1,9 @@
 import AreaPage from "@/components/sections/area-page";
 import type { Metadata } from "next";
 
-const title = "Espacios";
+const title = "Habilitación de espacios y mobiliario urbano | Taller 85";
 const description =
-  "Implementación, mantención y equipamiento de espacios públicos, comunitarios y privados.";
+  "Diseño, habilitación e instalación de espacios públicos y privados, incluyendo mobiliario urbano, juegos y equipamiento para uso comunitario.";
 const url = "https://www.taller85.cl/espacios";
 
 export const metadata: Metadata = {
