@@ -60,7 +60,7 @@ export default async function AreaPage({
     const images = shuffleArray(rawImages);
 
     return (
-        <div className="mx-auto max-w-7xl px-6 py-16 md:px-10">
+        <div className="mx-auto max-w-6xl px-6 py-16 md:px-10">
             <section className="mb-14">
                 <p
                     className="mb-3 text-sm font-medium uppercase tracking-[0.2em]"
@@ -92,32 +92,30 @@ export default async function AreaPage({
                     </p>
                 </div>
 
-                <div className="-mx-6 overflow-x-auto px-6 pb-4 md:-mx-10 md:px-10">
-                    <div className="flex snap-x snap-mandatory gap-5">
-                        {services.map((service) => (
-                            <article
-                                key={service.title}
-                                className="group flex min-h-[320px] w-[85%] shrink-0 snap-start flex-col justify-between rounded-3xl border border-black/10 bg-white p-7 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg md:w-[420px]"
-                            >
-                                <div>
-                                    <h3 className="mt-5 text-2xl font-semibold leading-tight tracking-tight text-neutral-950 md:text-3xl">
-                                        {service.title}
-                                    </h3>
+                <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+                    {services.map((service) => (
+                        <article
+                            key={service.title}
+                            className="group flex min-h-[280px] flex-col justify-between rounded-3xl border border-black/10 bg-white p-7 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg"
+                        >
+                            <div>
+                                <h3 className="text-2xl font-semibold leading-tight tracking-tight text-neutral-950">
+                                    {service.title}
+                                </h3>
 
-                                    <p className="mt-4 text-base leading-7 text-neutral-600">
-                                        {service.description}
-                                    </p>
-                                </div>
+                                <p className="mt-4 text-base leading-7 text-neutral-600">
+                                    {service.description}
+                                </p>
+                            </div>
 
-                                <div className="mt-10">
-                                    <div
-                                        className="h-1.5 w-16 rounded-full transition-all duration-300 group-hover:w-24"
-                                        style={{ backgroundColor: color }}
-                                    />
-                                </div>
-                            </article>
-                        ))}
-                    </div>
+                            <div className="mt-10">
+                                <div
+                                    className="h-1.5 w-16 rounded-full transition-all duration-300 group-hover:w-24"
+                                    style={{ backgroundColor: color }}
+                                />
+                            </div>
+                        </article>
+                    ))}
                 </div>
             </section>
 
@@ -127,7 +125,7 @@ export default async function AreaPage({
                         id="gallery-heading"
                         className="text-2xl font-semibold tracking-tight text-neutral-950"
                     >
-                        Trabajos del área
+                        Proyectos ejecutados
                     </h2>
 
                     <p className="mt-3 text-sm leading-6 text-neutral-600">
@@ -146,26 +144,27 @@ export default async function AreaPage({
                 )}
             </section>
             <section className="mt-20 rounded-3xl border border-black/10 bg-white px-8 py-10 text-center shadow-sm">
-                <h2 className="text-2xl font-semibold">
+                <h2 className="text-2xl font-semibold tracking-tight text-neutral-950">
                     ¿Tienes un proyecto en esta área?
                 </h2>
 
-                <p className="mt-3 text-neutral-600">
+                <p className="mt-3 mx-auto max-w-2xl text-neutral-600">
                     Cuéntanos qué necesitas y evaluamos la mejor forma de desarrollarlo.
                 </p>
 
-                <div className="mt-6 flex justify-center gap-3">
+                <div className="mt-6 flex flex-wrap justify-center gap-3">
                     <a
-                        href="#contacto"
-                        className="rounded-xl bg-[color:var(--brand)] px-6 py-3 text-sm font-medium text-white transition hover:opacity-90"
+                        href="/#contacto"
+                        className="inline-flex items-center justify-center rounded-xl bg-[color:var(--brand)] px-6 py-3 text-sm font-medium text-white transition hover:opacity-90"
                     >
                         Solicitar cotización
                     </a>
 
                     <a
-                        href="https://wa.me/56957269426"
+                        href="https://wa.me/56957269426?text=Hola%20Taller%2085,%20quiero%20cotizar%20un%20proyecto."
                         target="_blank"
-                        className="rounded-xl border border-black/10 bg-white px-6 py-3 text-sm font-medium text-neutral-900 transition hover:bg-neutral-50"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center rounded-xl border border-black/10 bg-white px-6 py-3 text-sm font-medium text-neutral-900 transition hover:bg-neutral-50"
                     >
                         WhatsApp
                     </a>

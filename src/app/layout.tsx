@@ -65,10 +65,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className={manrope.variable}>
+      <meta name="google-site-verification" content="Xs1yfClgiuA2qr6L0weBNXAYOK1jpd7SzlcX83954eI" />
       <body className="flex min-h-screen flex-col font-sans antialiased">
         <Header />
 
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 pt-[88px]">{children}</main>
 
         <footer className="border-t border-black/5 py-6 text-center text-sm text-slate-500">
           © 2026 Taller 85 · Soluciones para proyectos, espacios y marcas

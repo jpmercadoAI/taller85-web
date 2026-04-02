@@ -12,19 +12,20 @@ type GalleryImage = {
 
 type ProjectsGalleryProps = {
     images: GalleryImage[];
+    initialLimit?: number;
 };
 
-export default function ProjectsGallery({ images }: ProjectsGalleryProps) {
+export default function ProjectsGallery({ images, initialLimit = 6 }: ProjectsGalleryProps) {
     const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
     const [showAll, setShowAll] = useState(false);
 
-    const visibleImages = showAll ? images : images.slice(0, 6);
-    const hasMoreThanSix = images.length > 6;
+    const visibleImages = showAll ? images : images.slice(0, initialLimit);
+    const hasMoreImages = images.length > initialLimit;
 
     return (
         <>
             <div className="grid gap-4 md:grid-cols-3">
-                {visibleImages.map((image) => (
+                {visibleImages.map((image, index) => (
                     <button
                         key={image.id}
                         type="button"
@@ -52,7 +53,7 @@ export default function ProjectsGallery({ images }: ProjectsGalleryProps) {
                 ))}
             </div>
 
-            {hasMoreThanSix && (
+            {hasMoreImages && (
                 <div className="mt-8 flex justify-center">
                     <button
                         type="button"

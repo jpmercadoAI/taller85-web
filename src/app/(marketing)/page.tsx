@@ -5,6 +5,7 @@ import ContactForm from "@/components/sections/contact-form";
 import { createClient } from "@/lib/supabase/server";
 import ProjectsGallery from "@/components/sections/projects-gallery";
 import { Boxes, Wrench, Shuffle } from "lucide-react";
+import HeroVideo from "@/components/sections/hero-video";
 
 const title = "Taller 85";
 const description =
@@ -32,33 +33,43 @@ export const metadata: Metadata = {
 const areas = [
   {
     name: "Construcción",
+    id: "construccion",
     href: "/construccion",
     color: "var(--construction)",
     desc: "Obras e instalación en terreno",
+    image: "/images/areas/construccion.jpg",
   },
   {
     name: "Espacios",
+    id: "espacios",
     href: "/espacios",
     color: "var(--spaces)",
     desc: "Diseño y habilitación de espacios",
+    image: "/images/areas/espacios.jpg",
   },
   {
     name: "Manufactura",
+    id: "manufactura",
     href: "/manufactura",
     color: "var(--manufacturing)",
     desc: "Fabricación y soluciones a medida",
+    image: "/images/areas/manufactura.jpg",
   },
   {
     name: "Branding",
+    id: "branding",
     href: "/branding",
     color: "var(--branding)",
     desc: "Merch y productos personalizados",
+    image: "/images/areas/branding.jpg",
   },
   {
     name: "Media",
+    id: "media",
     href: "/media",
     color: "var(--media)",
     desc: "Contenido audiovisual y digital",
+    image: "/images/areas/media.jpg",
   },
 ];
 
@@ -75,137 +86,176 @@ export default async function Home() {
     .slice(0, 6);
 
   return (
-    <section className="mx-auto flex max-w-6xl flex-col px-6 py-20">
-      <div className="mb-12 max-w-2xl">
-        <h1 className="mb-4 text-5xl font-semibold tracking-tight md:text-7xl">
-          Soluciones para proyectos, espacios y marcas
-        </h1>
+    <>
+      <HeroVideo />
+      <>
+        <section className="w-full bg-white px-6 py-20 md:px-10 lg:px-16">
+          <div className="grid items-start gap-12 md:grid-cols-2">
+            {/* COLUMNA IZQUIERDA */}
+            <div>
+              <h2 className="mb-6 max-w-4xl text-4xl font-semibold tracking-tight text-slate-900 md:text-6xl">
+                Unimos ejecución, manufactura y desarrollo creativo
+              </h2>
 
-        <p className="text-lg text-[color:var(--brand)]/70">
-          Plataforma base para construir, desarrollar y escalar soluciones
-          reales.
-        </p>
-      </div>
+              <p className="max-w-3xl text-lg leading-8 text-slate-600 md:text-xl">
+                Taller 85 integra construcción, habilitación de espacios, manufactura,
+                branding y media para resolver proyectos reales con una mirada práctica,
+                técnica y adaptable.
+              </p>
 
-      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
-        {areas.map((area) => (
-          <Link
-            key={area.name}
-            href={area.href}
-            className="group cursor-pointer rounded-2xl border border-black/5 bg-white p-7 min-h-[160px] shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-          >
-            <h2 className="text-lg font-semibold text-slate-900 transition-colors group-hover:text-slate-700">
-              {area.name}
-            </h2>
+              <div className="mt-8">
+                <div className="flex flex-wrap gap-3">
+                  <a
+                    href="#contacto"
+                    className="inline-flex items-center justify-center rounded-xl bg-[color:var(--brand)] px-6 py-3 text-sm font-medium text-white transition hover:opacity-90"
+                  >
+                    Solicitar cotización
+                  </a>
 
-            <div
-              className="mt-2 mb-3 h-1.5 w-12 rounded-full transition-all duration-300 group-hover:w-24"
-              style={{ backgroundColor: area.color }}
-            />
+                  <a
+                    href="#proyectos"
+                    className="inline-flex items-center justify-center rounded-xl border border-black/10 bg-white px-6 py-3 text-sm font-medium text-neutral-900 transition hover:bg-neutral-50"
+                  >
+                    Ver proyectos
+                  </a>
+                </div>
 
-            <p className="mt-2 text-sm text-slate-600">{area.desc}</p>
-          </Link>
-        ))}
-      </div>
+                <p className="mt-3 text-sm text-neutral-500">
+                  Respuesta rápida · Evaluación sin compromiso
+                </p>
+              </div>
+            </div>
 
-      <section className="mt-28">
-        <div className="mx-auto max-w-6xl rounded-3xl border border-black/5 bg-white px-8 py-12 shadow-sm md:px-12 md:py-16">
+            {/* COLUMNA DERECHA */}
+            <div className="grid gap-4">
+              <div className="rounded-2xl bg-slate-50 px-5 py-5">
+                <div className="mb-3 flex items-center gap-3">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[color:var(--brand)]/10">
+                    <Boxes className="h-5 w-5 text-[color:var(--brand)]" />
+                  </div>
+                  <p className="text-sm font-semibold text-slate-900">
+                    Soluciones integradas
+                  </p>
+                </div>
+
+                <p className="text-sm leading-6 text-slate-600">
+                  Conectamos distintas áreas para resolver proyectos de forma completa.
+                </p>
+              </div>
+
+              <div className="rounded-2xl bg-slate-50 px-5 py-5">
+                <div className="mb-3 flex items-center gap-3">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[color:var(--brand)]/10">
+                    <Wrench className="h-5 w-5 text-[color:var(--brand)]" />
+                  </div>
+                  <p className="text-sm font-semibold text-slate-900">
+                    Enfoque técnico y práctico
+                  </p>
+                </div>
+
+                <p className="text-sm leading-6 text-slate-600">
+                  Priorizamos ejecución real, criterio técnico y soluciones aplicables.
+                </p>
+              </div>
+
+              <div className="rounded-2xl bg-slate-50 px-5 py-5">
+                <div className="mb-3 flex items-center gap-3">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[color:var(--brand)]/10">
+                    <Shuffle className="h-5 w-5 text-[color:var(--brand)]" />
+                  </div>
+                  <p className="text-sm font-semibold text-slate-900">
+                    Adaptabilidad
+                  </p>
+                </div>
+
+                <p className="text-sm leading-6 text-slate-600">
+                  Nos ajustamos al tipo de proyecto, contexto y necesidad de cada cliente.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div>
+          {areas.map((area, index) => (
+            <section
+              key={area.id}
+              id={area.id}
+              className="relative w-full min-h-[75vh] overflow-hidden"
+            >
+              {/* FONDO */}
+              <img
+                src={area.image}
+                alt={area.name}
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+
+              {/* OVERLAY */}
+              <div className="absolute inset-0 bg-black/50" />
+
+              {/* CONTENIDO */}
+              <div className="relative z-10 mx-auto max-w-6xl px-6 py-20 md:px-10 lg:px-16">
+                <div
+                  className={`grid gap-12 md:grid-cols-2 items-center ${index % 2 !== 0
+                    ? "md:[&>*:first-child]:order-2 md:[&>*:last-child]:order-1"
+                    : ""
+                    }`}
+                >
+                  {/* TEXTO */}
+                  <div>
+                    <div
+                      className="mb-6 h-1.5 w-50 rounded-full"
+                      style={{ backgroundColor: area.color }}
+                    />
+                    <h2 className="mt-4 text-4xl font-semibold tracking-tight text-white md:text-6xl">
+                      {area.name}
+                    </h2>
+
+                    <p className="mt-6 max-w-xl text-lg leading-8 text-white/80">
+                      {area.desc}
+                    </p>
+
+                    <div className="mt-8">
+                      <Link
+                        href={area.href}
+                        className="inline-flex items-center gap-2 rounded-xl border border-white/30 px-6 py-3 text-sm font-medium text-white transition hover:bg-white/10"
+                      >
+                        Explorar área <span>→</span>
+                      </Link>
+                    </div>
+                  </div>
+
+                  {/* COLUMNA VACÍA PARA RESPIRAR */}
+                  <div />
+                </div>
+              </div>
+            </section>
+          ))}
+        </div>
+        <section id="proyectos" className="w-full bg-white px-6 py-20 md:px-10 lg:px-16">
           <div
             className="mb-6 h-1.5 w-24 rounded-full"
             style={{ backgroundColor: "var(--brand)" }}
           />
 
           <p className="mb-4 text-sm font-medium uppercase tracking-[0.18em] text-[color:var(--brand)]">
-            Taller 85
+            Proyectos
           </p>
 
-          <h2 className="mb-6 text-3xl font-semibold tracking-tight md:text-5xl">
-            Unimos ejecución, manufactura y desarrollo creativo
+          <h2 className="mb-6 text-4xl font-semibold tracking-tight text-slate-900 md:text-6xl">
+            Proyectos recientes
           </h2>
 
-          <p className="max-w-4xl text-lg leading-8 text-slate-600 md:text-xl">
-            Taller 85 integra construcción, habilitación de espacios, manufactura,
-            branding y media para resolver proyectos reales con una mirada práctica,
-            técnica y adaptable.
+          <p className="mb-10 max-w-3xl text-lg leading-8 text-slate-600 md:text-xl">
+            Una muestra de trabajos, ejecuciones y desarrollos recientes de Taller 85.
           </p>
 
-          <div className="mt-10 grid gap-4 md:grid-cols-3">
-            <div className="rounded-2xl bg-slate-50 px-5 py-5">
-              <div className="mb-3 flex items-center gap-3">
-                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[color:var(--brand)]/10">
-                  <Boxes className="h-5 w-5 text-[color:var(--brand)]" />
-                </div>
-                <p className="text-sm font-semibold text-slate-900">
-                  Soluciones integradas
-                </p>
-              </div>
+          <ProjectsGallery images={gallery ?? []} initialLimit={9} />
+        </section>
 
-              <p className="text-sm leading-6 text-slate-600">
-                Conectamos distintas áreas para resolver proyectos de forma completa.
-              </p>
-            </div>
-
-            <div className="rounded-2xl bg-slate-50 px-5 py-5">
-              <div className="mb-3 flex items-center gap-3">
-                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[color:var(--brand)]/10">
-                  <Wrench className="h-5 w-5 text-[color:var(--brand)]" />
-                </div>
-                <p className="text-sm font-semibold text-slate-900">
-                  Enfoque técnico y práctico
-                </p>
-              </div>
-
-              <p className="text-sm leading-6 text-slate-600">
-                Priorizamos ejecución real, criterio técnico y soluciones aplicables.
-              </p>
-            </div>
-
-            <div className="rounded-2xl bg-slate-50 px-5 py-5">
-              <div className="mb-3 flex items-center gap-3">
-                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[color:var(--brand)]/10">
-                  <Shuffle className="h-5 w-5 text-[color:var(--brand)]" />
-                </div>
-                <p className="text-sm font-semibold text-slate-900">
-                  Adaptabilidad
-                </p>
-              </div>
-
-              <p className="text-sm leading-6 text-slate-600">
-                Nos ajustamos al tipo de proyecto, contexto y necesidad de cada cliente.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div className="mt-6 flex gap-3">
-        <a
-          href="#contacto"
-          className="rounded-xl bg-[color:var(--brand)] px-6 py-3 text-sm font-medium text-white transition hover:opacity-90"
-        >
-          Solicitar cotización
-        </a>
-
-        <a
-          href="https://wa.me/56957269426"
-          target="_blank"
-          className="rounded-xl border border-black/10 bg-white px-6 py-3 text-sm font-medium text-neutral-900 transition hover:bg-neutral-50"
-        >
-          WhatsApp
-        </a>
-      </div>
-
-      <section className="mt-28">
-        <div className="mx-auto max-w-6xl">
-          <h2 className="mb-6 text-2xl font-semibold">Proyectos recientes</h2>
-
-          <ProjectsGallery images={gallery ?? []} />
-        </div>
-      </section>
-
-      <section id="contacto" className="mt-28">
-        <ContactForm />
-      </section>
-    </section>
+        <section id="contacto" className="mt-28">
+          <ContactForm />
+        </section>
+        /</>
+      /</>
   );
 }
