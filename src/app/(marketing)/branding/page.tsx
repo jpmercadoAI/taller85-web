@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 
 const title = "Branding, merch y ropa corporativa personalizada | Taller 85";
 const description =
-  "Diseño y producción de ropa corporativa, merchandising y elementos gráficos para marcas, empresas y proyectos con identidad propia.";
+  "Diseño y producción de merch, ropa corporativa y elementos gráficos personalizados para empresas, instituciones y marcas en Chile.";
 const url = "https://www.taller85.cl/branding";
 
 export const metadata: Metadata = {
@@ -30,7 +30,7 @@ export default function BrandingPage() {
       areaKey="Branding"
       color="var(--branding)"
       title="Branding"
-      description="Desarrollo de productos personalizados y merchandising para empresas, eventos y marcas."
+      description="Desarrollamos merch, ropa corporativa y elementos gráficos personalizados para empresas, instituciones y marcas. Creamos soluciones aplicadas con foco en identidad, presentación y uso real."
       services={[
         {
           title: "Ropa corporativa",

@@ -1,9 +1,9 @@
 import AreaPage from "@/components/sections/area-page";
 import type { Metadata } from "next";
 
-const title = "Producción audiovisual, fotografía y contenido digital | Taller 85";
+const title = "Fotografía, video y contenido digital para marcas | Taller 85";
 const description =
-  "Servicios de fotografía, video y contenido digital para proyectos, marcas y espacios que necesitan comunicación visual profesional.";
+  "Servicios de fotografía, video y contenido digital para proyectos, marcas, espacios y empresas que necesitan comunicación visual profesional.";
 const url = "https://www.taller85.cl/media";
 
 export const metadata: Metadata = {
@@ -30,7 +30,7 @@ export default function MediaPage() {
       areaKey="Media"
       color="var(--media)"
       title="Media"
-      description="Producción de contenido audiovisual y desarrollo digital para potenciar marcas y proyectos."
+      description="Generamos fotografía, video y contenido digital para proyectos, marcas, espacios y empresas que necesitan mostrar su trabajo con una presentación visual clara, profesional y coherente."
       services={[
         {
           title: "Fotografía profesional",

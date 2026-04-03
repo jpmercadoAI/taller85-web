@@ -1,9 +1,9 @@
 import AreaPage from "@/components/sections/area-page";
 import type { Metadata } from "next";
 
-const title = "Habilitación de espacios y mobiliario urbano | Taller 85";
+const title = "Habilitación de espacios e instalación de mobiliario urbano | Taller 85";
 const description =
-  "Diseño, habilitación e instalación de espacios públicos y privados, incluyendo mobiliario urbano, juegos y equipamiento para uso comunitario.";
+  "Habilitación de espacios en Santiago, instalación de mobiliario urbano, equipamiento y soluciones para espacios públicos y privados.";
 const url = "https://www.taller85.cl/espacios";
 
 export const metadata: Metadata = {
@@ -30,7 +30,7 @@ export default function EspaciosPage() {
       areaKey="Espacios"
       color="var(--spaces)"
       title="Espacios"
-      description="Soluciones para habilitación, equipamiento y mantención de espacios recreativos, comunitarios y funcionales."
+      description="Desarrollo, provisión e instalación de soluciones para espacios públicos y privados. Incluye instalación de mobiliario urbano, juegos infantiles y equipamiento, provisión de pisos de caucho y mantención de espacios."
       services={[
         {
           title: "Implementación de áreas recreativas",

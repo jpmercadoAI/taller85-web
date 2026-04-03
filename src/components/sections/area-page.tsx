@@ -62,6 +62,11 @@ export default async function AreaPage({
     return (
         <div className="mx-auto max-w-6xl px-6 py-16 md:px-10">
             <section className="mb-14">
+                <div
+                    className="mb-6 h-1.5 w-24 rounded-full"
+                    style={{ backgroundColor: color }}
+                />
+
                 <p
                     className="mb-3 text-sm font-medium uppercase tracking-[0.2em]"
                     style={{ color }}
@@ -84,7 +89,7 @@ export default async function AreaPage({
                         id="services-heading"
                         className="text-2xl font-semibold tracking-tight text-neutral-950"
                     >
-                        Servicios del área
+                        Servicios del <span style={{ color }}>área</span>
                     </h2>
 
                     <p className="mt-3 max-w-3xl text-sm leading-6 text-neutral-600 md:text-base">
@@ -155,7 +160,8 @@ export default async function AreaPage({
                 <div className="mt-6 flex flex-wrap justify-center gap-3">
                     <a
                         href="/#contacto"
-                        className="inline-flex items-center justify-center rounded-xl bg-[color:var(--brand)] px-6 py-3 text-sm font-medium text-white transition hover:opacity-90"
+                        className="inline-flex items-center justify-center rounded-xl px-6 py-3 text-sm font-medium text-white transition hover:opacity-90"
+                        style={{ backgroundColor: color }}
                     >
                         Solicitar cotización
                     </a>

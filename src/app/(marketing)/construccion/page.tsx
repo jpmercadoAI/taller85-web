@@ -2,8 +2,7 @@ import AreaPage from "@/components/sections/area-page";
 import type { Metadata } from "next";
 
 const title = "Obras menores y ejecución en terreno | Taller 85";
-const description =
-  "Ejecución de obras menores, preparación de terrenos, instalación de equipamiento y soluciones técnicas en terreno para espacios públicos y privados.";
+const description = "Ejecutamos obras menores en Santiago, incluyendo preparación de terrenos, instalación de mobiliario urbano y habilitación de espacios públicos y privados. Trabajamos directamente en terreno con enfoque técnico, orden de faena y cumplimiento del alcance."
 const url = "https://www.taller85.cl/construccion";
 
 export const metadata: Metadata = {
@@ -30,7 +29,7 @@ export default function ConstruccionPage() {
       areaKey="Construcción"
       color="var(--construction)"
       title="Construcción"
-      description="Ejecución de obras menores, preparación de terrenos e instalación de equipamiento en espacios públicos y privados."
+      description="Ejecución de obras menores y trabajos en terreno para espacios públicos y privados. Incluye preparación de terreno, excavaciones, apoyo en faenas, reparaciones y mantenciones, con foco en resolución técnica en terreno."
       services={[
         {
           title: "Preparación de terreno y excavaciones",

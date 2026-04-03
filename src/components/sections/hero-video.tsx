@@ -1,18 +1,145 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
+
+function shuffleArray<T>(array: T[]): T[] {
+    const newArray = [...array];
+
+    for (let i = newArray.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+    }
+
+    return newArray;
+}
+
+const heroVideos = Array.from(
+    { length: 13 },
+    (_, i) => `/video/hero-videos/hero-${i}.mp4`
+);
+
+const TRANSITION_MS = 700;
+
 export default function HeroVideo() {
+    const videoARef = useRef<HTMLVideoElement | null>(null);
+    const videoBRef = useRef<HTMLVideoElement | null>(null);
+
+    const [playlist, setPlaylist] = useState<string[]>([]);
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    const [activeLayer, setActiveLayer] = useState<"A" | "B">("A");
+    const [srcA, setSrcA] = useState<string>("");
+    const [srcB, setSrcB] = useState<string>("");
+
+    const [showA, setShowA] = useState(true);
+    const [isTransitioning, setIsTransitioning] = useState(false);
+
+    useEffect(() => {
+        const shuffled = shuffleArray(heroVideos).slice(0, 4);
+        setPlaylist(shuffled);
+    }, []);
+
+    useEffect(() => {
+        if (playlist.length === 0) return;
+
+        const first = playlist[0];
+        const second = playlist[1] ?? playlist[0];
+
+        setSrcA(first);
+        setSrcB(second);
+        setShowA(true);
+        setActiveLayer("A");
+        setCurrentIndex(0);
+    }, [playlist]);
+
+    useEffect(() => {
+        if (!srcA || !videoARef.current) return;
+
+        videoARef.current.load();
+        videoARef.current.play().catch(() => { });
+    }, [srcA]);
+
+    useEffect(() => {
+        if (!srcB || !videoBRef.current) return;
+
+        videoBRef.current.load();
+    }, [srcB]);
+
+    const handleEnded = async () => {
+        if (playlist.length === 0 || isTransitioning) return;
+
+        const nextVisibleIndex =
+            currentIndex + 1 >= playlist.length ? 0 : currentIndex + 1;
+
+        const preloadIndex =
+            nextVisibleIndex + 1 >= playlist.length ? 0 : nextVisibleIndex + 1;
+
+        const incomingRef = activeLayer === "A" ? videoBRef.current : videoARef.current;
+        const outgoingRef = activeLayer === "A" ? videoARef.current : videoBRef.current;
+
+        if (!incomingRef || !outgoingRef) return;
+
+        setIsTransitioning(true);
+
+        try {
+            incomingRef.currentTime = 0;
+            await incomingRef.play();
+        } catch {
+            // si el navegador se pone exquisito, igual seguimos
+        }
+
+        if (activeLayer === "A") {
+            setShowA(false);
+        } else {
+            setShowA(true);
+        }
+
+        window.setTimeout(() => {
+            outgoingRef.pause();
+            outgoingRef.currentTime = 0;
+
+            if (activeLayer === "A") {
+                setActiveLayer("B");
+                setSrcA(playlist[preloadIndex]);
+            } else {
+                setActiveLayer("A");
+                setSrcB(playlist[preloadIndex]);
+            }
+
+            setCurrentIndex(nextVisibleIndex);
+            setIsTransitioning(false);
+        }, TRANSITION_MS);
+    };
+
     return (
         <div className="relative w-full min-h-screen overflow-hidden">
-            {/* VIDEO */}
+            {/* VIDEO A */}
             <video
-                className="absolute inset-0 h-full w-full object-cover"
+                ref={videoARef}
+                className={`absolute inset-0 h-full w-full object-cover transition-opacity ease-linear ${showA ? "opacity-100" : "opacity-0"
+                    }`}
+                style={{ transitionDuration: `${TRANSITION_MS}ms` }}
                 autoPlay
                 muted
-                loop
                 playsInline
-                preload="metadata"
+                preload="auto"
+                onEnded={activeLayer === "A" ? handleEnded : undefined}
             >
-                <source src="/video/hero.mp4" type="video/mp4" />
+                {srcA && <source src={srcA} type="video/mp4" />}
+            </video>
+
+            {/* VIDEO B */}
+            <video
+                ref={videoBRef}
+                className={`absolute inset-0 h-full w-full object-cover transition-opacity ease-linear ${showA ? "opacity-0" : "opacity-100"
+                    }`}
+                style={{ transitionDuration: `${TRANSITION_MS}ms` }}
+                muted
+                playsInline
+                preload="auto"
+                onEnded={activeLayer === "B" ? handleEnded : undefined}
+            >
+                {srcB && <source src={srcB} type="video/mp4" />}
             </video>
 
             {/* OVERLAY */}

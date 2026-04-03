@@ -34,7 +34,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
-  ],
+, "src/app/api/analyze-image/analyze-image"  ],
   "exclude": [
     "node_modules"
   ]

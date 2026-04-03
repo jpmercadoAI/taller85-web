@@ -1,9 +1,9 @@
 import AreaPage from "@/components/sections/area-page";
 import type { Metadata } from "next";
 
-const title = "Fabricación de estructuras y soluciones a medida | Taller 85";
+const title = "Fabricación e instalación de mobiliario urbano y juegos infantiles | Taller 85";
 const description =
-  "Desarrollo y fabricación de piezas, estructuras metálicas y soluciones personalizadas para proyectos técnicos, urbanos e industriales.";
+  "Fabricación e instalación de mobiliario urbano, juegos infantiles y equipamiento deportivo para espacios públicos y privados en Santiago y Chile.";
 const url = "https://www.taller85.cl/manufactura";
 
 export const metadata: Metadata = {
@@ -30,7 +30,7 @@ export default function ManufacturaPage() {
       areaKey="Manufactura"
       color="var(--manufacturing)"
       title="Manufactura"
-      description="Fabricación de productos y soluciones técnicas con enfoque funcional, adaptable y orientado a requerimientos reales."
+      description="Fabricación de productos y soluciones a medida en metal y hormigón. Incluye desarrollo de juegos infantiles, mobiliario urbano y equipamiento deportivo, así como diseño y homologación de productos."
       services={[
         {
           title: "Fabricación de piezas y estructuras",
