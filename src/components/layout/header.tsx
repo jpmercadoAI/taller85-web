@@ -3,7 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { supabase } from "@/lib/supabase/client";
 
 const links = [
   { id: "construccion", label: "Construcción", route: "/construccion" },
@@ -11,12 +12,21 @@ const links = [
   { id: "manufactura", label: "Manufactura", route: "/manufactura" },
   { id: "branding", label: "Branding", route: "/branding" },
   { id: "media", label: "Media", route: "/media" },
+  { id: "registros", label: "Registros", route: "/registros" },
 ];
+
+type AuthUser = {
+  id: string;
+  email?: string;
+};
 
 export default function Header() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
   const [activeSection, setActiveSection] = useState<string>("");
+  const [user, setUser] = useState<AuthUser | null>(null);
+
   useEffect(() => {
     if (pathname !== "/") {
       setActiveSection("");
@@ -48,6 +58,47 @@ export default function Header() {
 
     return () => observer.disconnect();
   }, [pathname]);
+
+  useEffect(() => {
+    const loadUser = async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      if (user) {
+        setUser({
+          id: user.id,
+          email: user.email,
+        });
+      } else {
+        setUser(null);
+      }
+    };
+
+    loadUser();
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (session?.user) {
+        setUser({
+          id: session.user.id,
+          email: session.user.email,
+        });
+      } else {
+        setUser(null);
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    router.push("/");
+    router.refresh();
+  };  
+
   return (
     <>
       <header className="fixed top-0 left-0 z-50 w-full border-b border-black/5 bg-white/80 backdrop-blur">
@@ -67,14 +118,19 @@ export default function Header() {
 
           <nav className="hidden gap-6 text-sm text-slate-600 md:flex">
             {links.map((link) => {
-              const isActive = pathname === "/"
-                ? activeSection === link.id
-                : pathname === link.route;
+              const isActive =
+                pathname === "/" ? activeSection === link.id : pathname === link.route;
 
               return (
                 <Link
                   key={link.route}
-                  href={pathname === "/" ? `#${link.id}` : link.route}
+                  href={
+                    link.id === "registros"
+                      ? link.route
+                      : pathname === "/"
+                        ? `#${link.id}`
+                        : link.route
+                  }
                   className={`relative font-medium transition ${isActive
                     ? "text-[color:var(--brand)]"
                     : "text-slate-600 hover:text-slate-900"
@@ -94,6 +150,29 @@ export default function Header() {
               );
             })}
           </nav>
+
+          {user && (
+            <div className="hidden items-center gap-3 md:flex">
+              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[color:var(--brand)]/10 text-sm font-semibold text-[color:var(--brand)]">
+                {user.email?.charAt(0).toUpperCase() ?? "U"}
+              </div>
+
+              <div className="max-w-[180px]">
+                <p className="truncate text-sm font-medium text-slate-900">
+                  {user.email}
+                </p>
+                <p className="text-xs text-slate-500">Usuario interno</p>
+              </div>
+
+              <button
+                type="button"
+                onClick={handleLogout}
+                className="rounded-lg border border-black/10 px-3 py-2 text-sm text-slate-700 transition hover:bg-black/5"
+              >
+                Salir
+              </button>
+            </div>
+          )}
 
           <button
             type="button"
