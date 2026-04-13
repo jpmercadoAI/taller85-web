@@ -5,21 +5,21 @@ import { useEffect, useState } from "react";
 
 
 type RegistroItem = {
-  id: string;
-  image_url: string;
-  alt_text: string | null;
-  area: string | null;
-  created_at: string;
-  tags: string[] | null;
-  is_visible: boolean | null;
-  project_id: string | null;
-  projects: {
-    title: string | null;
-  }[] | null;
+    id: string;
+    image_url: string;
+    alt_text: string | null;
+    area: string | null;
+    created_at: string;
+    tags: string[] | null;
+    is_visible: boolean | null;
+    project_id: string | null;
+    projects: {
+        title: string | null;
+    }[] | null;
 };
 
 type RegistrosGalleryProps = {
-  registros: RegistroItem[];
+    registros: RegistroItem[];
 };
 
 export default function RegistrosGallery({
@@ -147,7 +147,7 @@ export default function RegistrosGallery({
                                 </td>
 
                                 <td className="px-4 py-3 text-black/60">
-                                    {item.projects?.title || "Sin proyecto"}
+                                    {item.projects?.[0]?.title || "Sin proyecto"}
                                 </td>
 
                                 <td className="px-4 py-3 text-black/70">
@@ -230,7 +230,7 @@ export default function RegistrosGallery({
                             <div>
                                 <h2 className="text-xl font-semibold">Detalle del registro</h2>
                                 <p className="mt-1 text-sm text-white/70">
-                                    {selectedRegistro.projects?.title || "Sin proyecto"}
+                                    {selectedRegistro.projects?.[0]?.title || "Sin proyecto"}
                                 </p>
                             </div>
 
