@@ -3,16 +3,17 @@ import { createClient } from "@/lib/supabase/server";
 import RegistrosGallery from "@/components/dashboard/registros-gallery";
 
 type ProjectImageRow = {
-    id: string;
-    image_url: string;
-    alt_text: string | null;
-    area: string | null;
-    created_at: string;
-    tags: string[] | null;
-    project_id: string | null;
-    projects: {
-        title: string | null;
-    } | null;
+  id: string;
+  image_url: string;
+  alt_text: string | null;
+  area: string | null;
+  created_at: string;
+  tags: string[] | null;
+  is_visible: boolean | null;
+  project_id: string | null;
+  projects: {
+    title: string | null;
+  }[] | null;
 };
 
 export default async function RegistrosPage() {

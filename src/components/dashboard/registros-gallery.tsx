@@ -5,21 +5,21 @@ import { useEffect, useState } from "react";
 
 
 type RegistroItem = {
-    id: string;
-    image_url: string;
-    alt_text: string | null;
-    area: string | null;
-    created_at: string;
-    tags: string[] | null;
-    is_visible: boolean;
-    project_id: string | null;
-    projects: {
-        title: string | null;
-    } | null;
+  id: string;
+  image_url: string;
+  alt_text: string | null;
+  area: string | null;
+  created_at: string;
+  tags: string[] | null;
+  is_visible: boolean | null;
+  project_id: string | null;
+  projects: {
+    title: string | null;
+  }[] | null;
 };
 
 type RegistrosGalleryProps = {
-    registros: RegistroItem[];
+  registros: RegistroItem[];
 };
 
 export default function RegistrosGallery({
