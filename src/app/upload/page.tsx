@@ -1,7 +1,8 @@
 "use client";
 
-import { ChangeEvent, useRef, useState, useEffect } from "react";
-import { supabase } from "@/lib/supabase/client";
+import { ChangeEvent, useRef, useState, useEffect, useMemo } from "react";
+import { useRouter } from "next/navigation";
+import { createClient } from "@/lib/supabase/client";
 
 type AiResult = {
     title: string;
@@ -11,6 +12,8 @@ type AiResult = {
 };
 
 export default function UploadPage() {
+    const supabase = useMemo(() => createClient(), []);
+    const router = useRouter();
     const [file, setFile] = useState<File | null>(null);
     const [previewUrl, setPreviewUrl] = useState<string>("");
     const [uploadedUrl, setUploadedUrl] = useState<string>("");
@@ -36,6 +39,20 @@ export default function UploadPage() {
     const [files, setFiles] = useState<File[]>([]);
     const [currentIndex, setCurrentIndex] = useState(0);
 
+    useEffect(() => {
+        const checkUser = async () => {
+            const {
+                data: { user },
+            } = await supabase.auth.getUser();
+
+            if (!user) {
+                router.push("/login");
+            }
+        };
+
+        checkUser();
+    }, [router, supabase]);
+    
     useEffect(() => {
         const fetchProjects = async () => {
             const { data, error } = await supabase

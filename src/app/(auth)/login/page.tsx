@@ -1,16 +1,30 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useMemo, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { supabase } from "@/lib/supabase/client";
+import { createClient } from "@/lib/supabase/client";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+
 
 export default function LoginPage() {
   const router = useRouter();
+
+  const [mounted, setMounted] = useState(false);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  // dentro del componente
+  const supabase = useMemo(() => createClient(), []);
+  const searchParams = useSearchParams();
+  const resetSuccess = searchParams.get("reset") === "success";
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -19,12 +33,19 @@ export default function LoginPage() {
       setLoading(true);
       setError("");
 
+      const cleanEmail = email.trim().toLowerCase();
+
       const { error } = await supabase.auth.signInWithPassword({
-        email,
+        email: cleanEmail,
         password,
       });
 
-      if (error) throw error;
+      if (error) {
+        console.error("LOGIN ERROR:", error);
+        throw error;
+      }
+      console.log("LOGIN EMAIL:", JSON.stringify(cleanEmail));
+      console.log("PASSWORD LENGTH:", password.length);
 
       router.push("/upload");
       router.refresh();
@@ -47,7 +68,11 @@ export default function LoginPage() {
           <p className="mt-2 text-sm leading-6 text-black/65">
             Acceso interno Taller 85.
           </p>
-
+          {mounted && resetSuccess ? (
+            <div className="mt-4 rounded-2xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700">
+              Contraseña actualizada. Inicia sesión con tu nueva clave.
+            </div>
+          ) : null}
           <form onSubmit={handleLogin} className="mt-6 space-y-4">
             <div>
               <label className="mb-2 block text-sm font-medium">
@@ -57,6 +82,7 @@ export default function LoginPage() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                autoComplete="email"
                 className="w-full rounded-xl border border-black/10 px-4 py-3 text-sm outline-none transition focus:border-black"
                 placeholder="correo@empresa.cl"
                 required
@@ -71,6 +97,7 @@ export default function LoginPage() {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                autoComplete="current-password"
                 className="w-full rounded-xl border border-black/10 px-4 py-3 text-sm outline-none transition focus:border-black"
                 placeholder="••••••••"
                 required
@@ -84,6 +111,12 @@ export default function LoginPage() {
             >
               {loading ? "Ingresando..." : "Ingresar"}
             </button>
+            <Link
+              href="/recuperar-clave"
+              className="text-sm text-black/60 underline underline-offset-4 hover:text-black"
+            >
+              ¿Olvidaste tu contraseña?
+            </Link>
           </form>
 
           {error && (

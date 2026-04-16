@@ -2,9 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { supabase } from "@/lib/supabase/client";
+import { createClient } from "@/lib/supabase/client";
 
 const links = [
   { id: "construccion", label: "Construcción", route: "/construccion" },
@@ -21,6 +21,7 @@ type AuthUser = {
 };
 
 export default function Header() {
+  const supabase = useMemo(() => createClient(), []);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
@@ -97,7 +98,12 @@ export default function Header() {
     await supabase.auth.signOut();
     router.push("/");
     router.refresh();
-  };  
+  };
+
+  const visibleLinks = links.filter((link) => {
+    if (link.id === "registros" && !user) return false;
+    return true;
+  });
 
   return (
     <>

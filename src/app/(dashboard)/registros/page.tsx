@@ -1,23 +1,31 @@
-import Image from "next/image";
 import { createClient } from "@/lib/supabase/server";
 import RegistrosGallery from "@/components/dashboard/registros-gallery";
+import { redirect } from "next/navigation";
 
 type ProjectImageRow = {
-  id: string;
-  image_url: string;
-  alt_text: string | null;
-  area: string | null;
-  created_at: string;
-  tags: string[] | null;
-  is_visible: boolean | null;
-  project_id: string | null;
-  projects: {
-    title: string | null;
-  }[] | null;
+    id: string;
+    image_url: string;
+    alt_text: string | null;
+    area: string | null;
+    created_at: string;
+    tags: string[] | null;
+    is_visible: boolean | null;
+    project_id: string | null;
+    projects: {
+        title: string | null;
+    }[] | null;
 };
 
 export default async function RegistrosPage() {
     const supabase = await createClient();
+
+    const {
+        data: { user },
+    } = await supabase.auth.getUser();
+
+    if (!user) {
+        redirect("/login");
+    }
 
     const { data, error } = await supabase
         .from("project_images")
